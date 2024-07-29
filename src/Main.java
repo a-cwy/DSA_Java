@@ -2,32 +2,33 @@ import structures.*;
 
 public class Main {
     public static void main(String[] args) {
-        SinglyLinkedList<Integer> sll = new SinglyLinkedList<>();
+        SinglyLinkedList<String> sll = new SinglyLinkedList<>();
 
-        sll.add(1);
-        sll.add(3);
-        System.out.println("> " + sll.length());
-        sll.add(5);
-        sll.add(7);
-        System.out.println("+ " + sll.length());
-        sll.add(9);
-        System.out.println("+ " + sll.length());
-
+        sll.add("3");
+        sll.add("5");
+        sll.add("7");
+        sll.add("9");
         sll.print();
+        System.out.println("Length: " + sll.length());
+        sll.unshift("1");
+        sll.print();
+        System.out.println("Length: " + sll.length());
+        sll.push("11");
+        sll.print();
+        System.out.println("Length: " + sll.length());
+        System.out.println();
 
-        System.out.println("> " + sll.get(2));
-        System.out.println("+ " + sll.get(0));
-        System.out.println("+ " + sll.get(-1));
-        System.out.println("+ " + sll.get(5));
-        sll.add(11);
-        System.out.println("+ " + sll.get(5));
+        String shift = sll.shift();
+        System.out.println("Shift: " + shift);
+        System.out.println("Length: " + sll.length());
+        sll.print();
+        System.out.println();
 
-        System.out.println("> " + sll.get(5));
-        System.out.println("+ " + sll.get(4));
-        System.out.println("+ " + sll.get(3));
-        sll.remove(2);
-        System.out.println("+ " + sll.get(5));
-        System.out.println("+ " + sll.get(4));
-        System.out.println("+ " + sll.get(3));
+        String pop = sll.pop();
+        System.out.println("Pop: " + pop);
+        System.out.println("Length: " + sll.length());
+        sll.print();
+        System.out.println();
+
     }
 }

@@ -37,6 +37,63 @@ public class SinglyLinkedList<T> {
         this.length++;
     }
 
+    public void unshift(T data) {
+        Node<T> newHead = new Node<>(data);
+        newHead.next = this.head;
+        this.head = newHead;
+
+        this.length++;
+    }
+
+    public void push(T data) {
+        Node<T> newTail = new Node<>(data);
+
+        // Iterate to final node
+        Node<T> curTail = this.head;
+        while (curTail.next != null) curTail = curTail.next;
+        curTail.next = newTail;
+
+        this.length++;
+    }
+
+    public void remove(int index) {
+        if (this.head == null) return;
+        if (index < 0 || index >= this.length) return;
+
+        // Iterate to desired index
+        Node<T> prev = this.head;
+        for (int i = 0; i < index - 1; i++) {
+            prev = prev.next;
+        }
+
+        prev.next = prev.next.next;
+        this.length--;
+    }
+
+    public T shift() {
+        Node<T> ret = this.head;
+        this.head = this.head.next;
+
+        this.length--;
+        return ret.data;
+    }
+
+    public T pop() {
+        Node<T> cur = this.head;
+
+        // Iterate to second last node
+        for (int i = 1; i < this.length - 1; i++) {
+            cur = cur.next;
+        }
+
+        // Get data of last node and remove last node
+        T ret = cur.next.data;
+        cur.next = null;
+
+        this.length--;
+        return ret;
+    }
+
     public T get(int index) {
         if (this.head == null) return null;
         if (index < 0 || index >= this.length) return null;
@@ -51,27 +108,23 @@ public class SinglyLinkedList<T> {
         return ret.data;
     }
 
-    public void remove(int index) {
-        if (this.head == null) return;
-        if (index < 0 || index >= this.length) return;
-
-        // Iterate to desired index
-        Node<T> prev = this.head;
-        for (int i = 0; i < index - 1; i++) {
-            prev = prev.next;
-        }
-        prev.next = prev.next.next;
-    }
-
     public void print() {
         Node<T> cur = this.head;
-        System.out.print("[");
+        System.out.print("SinglyLinkedList[");
         while (cur != null) {
             System.out.print(cur.data + ", ");
             cur = cur.next;
         }
         System.out.print("\b\b]\n");
     }
+
+//    public void forEach(/* implement callback with (data, index) */) {
+//        // TODO STUB
+//    }
+
+//    public T[] toArray() {
+//        // TODO STUB
+//    }
 
     // GET SET
     public int length() {
